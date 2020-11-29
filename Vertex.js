@@ -40,10 +40,10 @@ void main()
   modelN=normal;
   
   // Comment these lines out to stop twisting
-  modelX.xy = Rotate2D(modelX.xy,0.5*pi*modelX.x*tan(3.0*time)); // Try commenting out *just* this linex
-  modelN.xy = Rotate2D(modelN.xy,0.5*pi*modelX.x*tan(3.0*time)); // This is simple as that only since the transform is rotation
-  modelX.xz = Rotate2D(modelX.xz,0.5*pi*modelX.x*-tan(3.0*time)); // Try commenting out *just* this linex
-  modelN.xz = Rotate2D(modelN.xz,0.5*pi*modelX.x*-tan(3.0*time));
+  modelX.xy = Rotate2D(modelX.xy,0.5*pi*modelX.x*sqrt(abs((.5*tan(3.0*time))))); // Try commenting out *just* this linex
+  modelN.xy = Rotate2D(modelN.xy,0.5*pi*modelX.x*sqrt(abs((.5*tan(3.0*time))))); // This is simple as that only since the transform is rotation
+  modelX.xz = Rotate2D(modelX.xz,0.5*pi*modelX.x*sqrt(abs((.5*tan(3.0*time))))); // Try commenting out *just* this linex
+  modelN.xz = Rotate2D(modelN.xz,0.5*pi*modelX.x*sqrt(abs((.5*tan(3.0*time)))));
   
   //calculates normalized varying of the product of the uniform normalized matrix and the normalized vector attribute
   fNormal = normalize(normalMatrix * modelN);
