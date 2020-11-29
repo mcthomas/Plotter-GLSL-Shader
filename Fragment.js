@@ -5,10 +5,8 @@ uniform float time;
 varying vec3 fPosition;
 //normalized vector accessible between v/s and f/s
 varying vec3 fNormal;
-
+//model-view coordinates accesible between v/s and f/s
 varying vec3 fRawX;
-
-
 //determines shader ambient light ratio (light from all directions)
 const float ambient_coeff   = 0.20;
 //determines shader specular light ratio (reflection point light)
@@ -51,6 +49,7 @@ void main()
   float greenDiffuse = pow(dot(fNormal,yx),1.333);
   float blueDiffuse = pow(dot(fNormal,ydivx),2.0);
   
+  //rgb diffuse cols for gl_FragColor vec4, with their respective multipliers
   vec3 redCol = redDiffuse * vec3(1,0,0);
   vec3 greenCol = greenDiffuse * vec3(0,1,0);
   vec3 blueCol = blueDiffuse * vec3(0,0,1);
