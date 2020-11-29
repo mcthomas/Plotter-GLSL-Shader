@@ -28,6 +28,7 @@ vec2 Rotate2D(vec2 vec_in, float angle)
   vec2 vec_out;
   vec_out.x=cos(angle)*vec_in.x-sin(angle)*vec_in.y;
   vec_out.y=sin(angle)*vec_in.x+cos(angle)*vec_in.y;
+  //vec_out.z=sin(angle)*vec_in.x+cos(angle)*vec_in.y;
   return vec_out;
 }
 
@@ -39,13 +40,15 @@ void main()
   modelN=normal;
   
   // Comment these lines out to stop twisting
-  modelX.xz = Rotate2D(modelX.xz,0.5*pi*modelX.y*sin(10.0*time)); // Try commenting out *just* this line :)
-  modelN.xz = Rotate2D(modelN.xz,0.5*pi*modelX.y*sin(10.0*time)); // This is simple as that only since the transform is rotation
+  modelX.xy = Rotate2D(modelX.xy,0.5*pi*modelX.x*tan(3.0*time)); // Try commenting out *just* this linex
+  modelN.xy = Rotate2D(modelN.xy,0.5*pi*modelX.x*tan(3.0*time)); // This is simple as that only since the transform is rotation
+  modelX.xz = Rotate2D(modelX.xz,0.5*pi*modelX.x*-tan(3.0*time)); // Try commenting out *just* this linex
+  modelN.xz = Rotate2D(modelN.xz,0.5*pi*modelX.x*-tan(3.0*time));
   
   //calculates normalized varying of the product of the uniform normalized matrix and the normalized vector attribute
-  fNormal = normalize(normalMatrix * normal);
+  fNormal = normalize(normalMatrix * modelN);
   //position vector as a product of the uniform model view matrix and a vector comprising the position attribute and a float
-  vec4 pos = modelViewMatrix * vec4(position, 0.5);
+  vec4 pos = modelViewMatrix * vec4(modelX, 0.5);
   //position vector varying including the three coordinates of the pos vector
   fPosition = pos.xyz;
   //sets the normalized device coordinates to be a product of the uniform projection matrix and the position vector
