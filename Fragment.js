@@ -26,7 +26,7 @@ const vec3  object_color    = vec3(0.5,0.5,0.5); // grey
 void main()
 {
   //indicates change in time as a product of time and a float 50.0 multiplier
-  float delta = time*20.0;
+  float delta = time*5.0;
   //direction towards light
   vec3 l = normalize(light_direction);
   //normized vector perpendicular to surface
